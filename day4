@@ -1,0 +1,27 @@
+# grep.py
+import sys
+
+def search(path, keyword):
+    count = 0
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            # 枚举，从1开始做行号
+            for line_num, line in enumerate(f, start=1):
+                # 去掉换行符
+                line = line.rstrip("\n")
+                if keyword in line:
+                    print(f"{line_num}: {line}")
+                    count += 1
+        print(f"共匹配 {count} 行")
+    except FileNotFoundError:
+        print(f"文件不存在：{path}")
+
+
+if __name__ == "__main__":
+    # 命令行参数：sys.argv[0]是脚本名，1是路径，2是关键词
+    if len(sys.argv) != 3:
+        print("用法：py grep.py 文件路径 关键词")
+    else:
+        file_path = sys.argv[1]
+        key = sys.argv[2]
+        search(file_path, key)

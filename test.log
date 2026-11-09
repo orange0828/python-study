@@ -1,0 +1,8 @@
+start service
+connect ok
+error: timeout
+waiting
+recv data
+save ok
+error: disk full
+end
